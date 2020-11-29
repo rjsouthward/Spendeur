@@ -12,6 +12,9 @@
   },
   "author": "Ryan Southward",
   "license": "ISC",
+  "engines":{
+    "node": "12.18.3"
+  },
   "bugs": {
     "url": "https://github.com/rjsouthward/Spendeur/issues"
   },
