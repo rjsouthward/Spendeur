@@ -9,7 +9,13 @@ let dburl = process.env.dburl
 if (dburl == null||dburl ==""){
   dburl = "mongodb+srv://rsouthward:0HJNeZ0{J@spendeurdb.3jdem.mongodb.net/SpendeurDB";
 }
-mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true }, function(error){
+  if (!error){
+    console.log("Connected to DB");
+  } else {
+    console.log(error);
+  }
+});
 const optionsSchema = new mongoose.Schema({
   name: String,
   position: Number,
