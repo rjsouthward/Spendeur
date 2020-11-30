@@ -10,12 +10,6 @@ if (dburl == null||dburl ==""){
   dburl = "mongodb+srv://rsouthward:0HJNeZ0{J@spendeurdb.3jdem.mongodb.net/SpendeurDB";
 }
 mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true });
-.then(()=>{
-    console.log("connected to db");
-})
-.catch((err)=>{
-    console.log("error:",err);
-})
 const optionsSchema = new mongoose.Schema({
   name: String,
   position: Number,
