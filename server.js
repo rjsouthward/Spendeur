@@ -7,10 +7,10 @@ const mongoose = require('mongoose');
 
 let dburl = process.env.dburl
 // console.log("success")
-// if (dburl == null||dburl ==""){
-//   dburl = "mongodb+srv://rsouthward:0HJNeZ0{J@spendeurdb.3jdem.mongodb.net/SpendeurDB";
-// }
-mongoose.connect("mongodb+srv://rsouthward:0HJNeZ0{J@spendeurdb.3jdem.mongodb.net/SpendeurDB", { useNewUrlParser: true, useUnifiedTopology: true });
+if (dburl == null||dburl ==""){
+  dburl = "mongodb+srv://rsouthward:0HJNeZ0{J@spendeurdb.3jdem.mongodb.net/SpendeurDB";
+}
+mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true });
 const optionsSchema = new mongoose.Schema({
   name: String,
   position: Number,
