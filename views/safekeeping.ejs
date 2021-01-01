@@ -22,3 +22,189 @@
   </div>
   </div>
 <% }) %>
+
+<% siteposts.forEach(function(post){ %>
+  <div class="col-lg-3 col-md-4 col-sm-6 <%=post.category%> <%=post.cause %>">
+  <div class="product__item">
+  <div class="product__item__pic set-bg" data-setbg= "<%= post.brandImageURL %>" style="background-image: url(&quot;<%= post.brandImageURL%>&quot;);">
+  <ul class="product__hover">
+  <li><a href= "<%= post.brandImageURL %>" class="image-popup"><span class="arrow_expand"></span></a></li>
+  <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+  </ul>
+  </div>
+  <div class="product__item__text">
+  <h6><%= post.brandName%></h6>
+  </div>
+  </div>
+  </div>
+<% }) %>
+
+<% siteposts.forEach(function(post){ %>
+  <div class="col-lg-3 col-md-4 col-sm-6 <%=post.category%> <%=post.cause %>">
+    <button type="button" class="collapsible">
+    <% for (var p=0; p<post.brandImageURL.length; p++){ %>
+<div class="slideshow-container">
+                         <div class="<%= post.brandName%>">
+                            <img src="<%= post.brandImageURL[p] %>" class="product-image">
+                            <div class="product__item__text">
+                            <h6><%= post.brandName%></h6>
+                            </div>
+                         </div>
+</div>
+    <% } %>
+
+                   </button>
+                   <div class="content">
+                      <div style="text-align:center">
+                        <% var m = 0 %>
+                        <% for (m=0; m<post.brandImageURL.length; m++){ %>
+                         <span class="dot" onclick="currentSlide(<%= m %>)"></span>
+                         <% } %>
+                      </div>
+                      <% if (post.cause == "Black Owned Business") { %>
+                      <div class="black-owned-business-button">
+                         <a href="google.com" class="button">
+                            <h6 class="black-owned-business-text">Black Owned Business</h6>
+                         </a>
+                      </div>
+                      <% } %>
+                   </div>
+                   <script>
+                      var coll = document.getElementsByClassName("collapsible");
+                      var i;
+
+                      for (i = 0; i < coll.length; i++) {
+                        coll[i].addEventListener("click", function() {
+                          // this.classList.toggle("active-toggle");
+                          var content = this.nextElementSibling;
+                          if (content.style.display === "block") {
+                            content.style.display = "none";
+                          } else {
+                            content.style.display = "block";
+                          }
+                        });
+                      }
+                   </script>
+                   <script>
+                      var slideIndex = 1;
+                      showSlides(slideIndex);
+
+                      function plusSlides(n) {
+                        showSlides(slideIndex += n);
+                      }
+
+                      function currentSlide(n) {
+                        showSlides(slideIndex = n);
+                      }
+
+                      function showSlides(n) {
+                        var h;
+                        var slides = document.getElementsByClassName(<%= post.brandName%>);
+                        var dots = document.getElementsByClassName("dot");
+                        if (n > slides.length) {slideIndex = 1}
+                        if (n < 1) {slideIndex = slides.length}
+                        for (h = 0; h < slides.length; h++) {
+                            slides[h].style.display = "none";
+                        }
+                        for (h = 0; h < dots.length; h++) {
+                            dots[h].className = dots[h].className.replace(" active", "");
+                        }
+                        slides[slideIndex-1].style.display = "block";
+                        dots[slideIndex-1].className += " active";
+                      }
+                   </script>
+
+  </div>
+  </div>
+<% }) %>
+
+Testing...
+<% var m = 0 %>
+<% siteposts.forEach(function(post){ %>
+  <div class="col-lg-3 col-md-4 col-sm-6 <%=post.category%> <%=post.cause %>">
+  <div class="product__item">
+  <div class="product__item__pic set-bg <%= post.brandName%>" data-setbg= "<%= post.brandImageURL[0] %>" style="background-image: url(&quot;<%= post.brandImageURL[0]%>&quot;);" onclick="showcontent()">
+  <ul class="product__hover">
+  <li><a href= "<%= post.brandImageURL[0] %>" class="image-popup"><span class="arrow_expand"></span></a></li>
+  <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+  </ul>
+  </div>
+  <div class="product__item__text">
+  <h6><%= post.brandName%></h6>
+  </div>
+  </div>
+<div class="content">
+   <div style="text-align:center">
+     <% for (m=0; m<post.brandImageURL.length; m++){ %>
+      <span class="dot" onclick="changeslide()"></span>
+      <% } %>
+   </div>
+   <% if (post.cause == "Black Owned Business") { %>
+   <div class="black-owned-business-button">
+      <a href="google.com" class="button">
+         <h6 class="black-owned-business-text">Black Owned Business</h6>
+      </a>
+   </div>
+   <% } %>
+</div>
+  </div>
+<% }) %>
+
+<% var m = 0 %>
+<% siteposts.forEach(function(post){ %>
+  <div class="col-lg-3 col-md-4 col-sm-6 <%=post.category%> <%=post.cause %>">
+    <button type="button" class="collapsible">
+    <% for (var p=0; p<post.brandImageURL.length; p++){ %>
+<div class="slideshow-container">
+                         <div class="<%= post.brandName%>">
+                            <img src="<%= post.brandImageURL[p] %>" class="product-image">
+                            <div class="product__item__text">
+                            <h6><%= post.brandName%></h6>
+                            </div>
+                         </div>
+</div>
+    <% } %>
+
+                   </button>
+                   <div class="content">
+                      <div style="text-align:center">
+                        <% for (m=0; m<post.brandImageURL.length; m++){ %>
+                         <span class="dot" onclick="currentSlide()"></span>
+                         <% } %>
+                      </div>
+                      <% if (post.cause == "Black Owned Business") { %>
+                      <div class="black-owned-business-button">
+                         <a href="google.com" class="button">
+                            <h6 class="black-owned-business-text">Black Owned Business</h6>
+                         </a>
+                      </div>
+                      <% } %>
+                   </div>
+                   <script>
+                     var coll = document.getElementsByClassName("content");
+                      function showcontent(){
+                        if (content.style.display === "block") {
+                          coll.style.display = "none";
+                        } else {
+                          coll.style.display = "block";
+                        }
+                      }
+                   </script>
+                   <script>
+
+                      function changeslide(n) {
+                        var cur = <%= m %>
+                        var image = document.getElementsByClassName("<%= post.brandName%>")
+                        var dots = document.getElementsByClassName("dot");
+                        image[0].data-setbg = image[0].data-setbg.replace("<%= post.brandImageURL[0] %>", "<%= post.brandImageURL[cur] %>")
+                        image[0].style = image[0].style.replace("background-image: url(&quot;<%= post.brandImageURL[0]%>&quot;);" onclick="showcontent()", "background-image: url(&quot;<%= post.brandImageURL[cur]%>&quot;);" onclick="showcontent()")
+                        for (h = 0; h < dots.length; h++) {
+                            dots[h].className = dots[h].className.replace(" active", "");
+                        }
+                        dots[slideIndex-1].className += " active";
+                      }
+                   </script>
+
+  </div>
+  </div>
+<% }) %>

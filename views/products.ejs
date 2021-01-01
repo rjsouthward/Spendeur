@@ -80,34 +80,108 @@ edolore magna aliquapendisse ultrices gravida.</p>
 </div>
 </div>
 <div class="row property__gallery" id="MixItUp289236">
-<div class="col-lg-3 col-md-4 col-sm-6 mix women">
-<div class="product__item">
-<div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg" style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
-<div class="label new">New</div>
-<ul class="product__hover">
-<li><a href="img/product/product-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-<li><a href="#"><span class="icon_heart_alt"></span></a></li>
-<li><a href="#"><span class="icon_bag_alt"></span></a></li>
-</ul>
+<!-- Start -->
+
+<% siteposts.forEach(function(post){ %>
+  <% var imageconcat = "" %>
+  <% for (d of post.brandImageURL){ %>
+    <% imageconcat += d %>
+    <% imageconcat += " " %>
+  <% } %>
+
+  <div class="col-lg-3 col-md-4 col-sm-6 <%=post.category%> <%=post.cause %>">
+  <div class="product__item collapsible <%= post.brandName%>"  id="<%= post.brandName%>">
+  <div class="product__item__pic set-bg <%= post.brandName%>" data-setbg= "<%= post.brandImageURL[0] %>" style="background-image: url(&quot;<%= post.brandImageURL[0]%>&quot;);" data-images="<%= imageconcat%>" >
+  <ul class="product__hover">
+  <li><a href= "<%= post.brandImageURL[0] %>" class="image-popup"><span class="arrow_expand"></span></a></li>
+  <li><a href="<%=post.brandLinkRedirect %>"><span class="icon_bag_alt"></span></a></li>
+  </ul>
+  </div>
+  <div class="product__item__text">
+  <h6><%= post.brandName%></h6>
+  </div>
+  </div>
+<div class="content <%= post.brandName%>" alt="<%= post.brandName%>">
+   <div style="text-align:center">
+     <% for (m=0; m<post.brandImageURL.length; m++){ %>
+      <span class="dot <%= post.brandName %>"  data-num="<%= m%>"></span>
+      <% } %>
+   </div>
+   <% if (post.cause == "Black Owned Business") { %>
+   <div class="black-owned-business-button">
+      <a href="google.com" class="button">
+         <h6 class="black-owned-business-text">Black Owned Business</h6>
+      </a>
+   </div>
+   <% } %>
 </div>
-<div class="product__item__text">
-<h6><a href="#">Buttons tweed blazer</a></h6>
-<div class="rating">
-<i class="fa fa-star"></i>
-<i class="fa fa-star"></i>
-<i class="fa fa-star"></i>
-<i class="fa fa-star"></i>
-<i class="fa fa-star"></i>
-</div>
-<div class="product__price">$ 59.0</div>
-</div>
-</div>
-</div>
+  </div>
+  <script>
+    var coll = document.getElementsByClassName("product__item collapsible <%= post.brandName%>");
+    var cont = document.getElementsByClassName("content");
+         var i;
+
+         for (i = 0; i < coll.length; i++) {
+           coll[i].addEventListener("click", function() {
+             var thisid = this.id
+             for (p of cont){
+               if (p.className == "content "+thisid){
+                 if (p.style.display === "block") {
+                   p.style.display = "none";
+                   var reset = document.getElementsByClassName("product__item__pic set-bg "+thisid);
+                   var myimages = reset[0].dataset.images.split(" ")
+                   reset[0].style.backgroundImage = "url('"+myimages[0] +"')"
+                   var alldots = document.getElementsByClassName("dot");
+                   for (d of alldots){
+                     d.style.backgroundColor = "#bbb"
+                     d.style.width = "15px"
+                     d.style.height = "15px"
+                   }
+                 } else {
+                   p.style.display = "block";
+                 }
+               }
+             }
+
+           });
+         }
+  </script>
+
+<% }) %>
+
+<script>
+  var dots = document.getElementsByClassName("dot");
+
+       var p
+
+       for (p = 0; p < dots.length; p++) {
+         dots[p].addEventListener("click", function() {
+           for (w of dots){
+              w.style.backgroundColor = "#bbb"
+              w.style.width = "15px"
+              w.style.height = "15px"
+           }
+           var number = this.dataset.num
+           var myclass = ""
+           myclass += this.className
+           var spliced = myclass.slice(4)
+           var bg = document.getElementsByClassName("product__item__pic set-bg "+spliced);
+           var images = bg[0].dataset.images.split(" ")
+           bg[0].style.backgroundImage = "url('"+images[number] +"')"
+           this.style.backgroundColor = "#717171"
+           this.style.width = "20px"
+           this.style.height = "20px"
+         });
+       }
+
+
+</script>
+<!-- End -->
 <div class="col-lg-3 col-md-4 col-sm-6 mix men">
 <div class="product__item">
-<div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg" style="background-image: url(&quot;img/product/product-2.jpg&quot;);">
+<div class="product__item__pic set-bg" data-setbg="images/wearables.jpg" style="background-image: url(&quot;images/wearables.jpg&quot;);">
 <ul class="product__hover">
-<li><a href="img/product/product-2.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+<li><a href="images/wearables.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
 <li><a href="#"><span class="icon_bag_alt"></span></a></li>
 </ul>
@@ -128,7 +202,6 @@ edolore magna aliquapendisse ultrices gravida.</p>
 <div class="col-lg-3 col-md-4 col-sm-6 mix wearables">
 <div class="product__item">
 <div class="product__item__pic set-bg" data-setbg="img/product/product-3.jpg" style="background-image: url(&quot;img/product/product-3.jpg&quot;);">
-<div class="label stockout">out of stock</div>
 <ul class="product__hover">
 <li><a href="img/product/product-3.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
@@ -193,9 +266,8 @@ edolore magna aliquapendisse ultrices gravida.</p>
 </div>
 </div>
 <div class="col-lg-3 col-md-4 col-sm-6 mix women men book wearables cosmetic other">
-<div class="product__item sale">
+<div class="product__item">
 <div class="product__item__pic set-bg" data-setbg="img/product/product-6.jpg" style="background-image: url(&quot;img/product/product-6.jpg&quot;);">
-<div class="label sale">Sale</div>
 <ul class="product__hover">
 <li><a href="img/product/product-6.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
@@ -238,9 +310,8 @@ edolore magna aliquapendisse ultrices gravida.</p>
 </div>
 </div>
 <div class="col-lg-3 col-md-4 col-sm-6 mix women men book wearables cosmetic other">
-<div class="product__item sale">
+<div class="product__item">
 <div class="product__item__pic set-bg" data-setbg="img/product/product-8.jpg" style="background-image: url(&quot;img/product/product-8.jpg&quot;);">
-<div class="label">Sale</div>
 <ul class="product__hover">
 <li><a href="img/product/product-8.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
@@ -249,9 +320,6 @@ edolore magna aliquapendisse ultrices gravida.</p>
 </div>
 <div class="product__item__text">
 <h6><a href="#">Water resistant backpack</a></h6>
-<% siteposts.forEach(function(post){ %>
-  <h3><%= post.products[0].title %></h3>
-<% }) %>
 <div class="rating">
 <i class="fa fa-star"></i>
 <i class="fa fa-star"></i>

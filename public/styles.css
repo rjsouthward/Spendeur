@@ -3680,3 +3680,71 @@ ol {
 		font-size: 24px;
 	}
 }
+
+/* Ryan's Products: */
+.brand-title{
+    padding: 1.5vh 3vh;
+}
+
+.product-image{
+    max-height: 30vh;
+   width: 100%;
+   max-width: 100%;
+   flex-shrink: 0;
+   object-fit: cover;
+    object-position: center;
+}
+.collapsible:hover {
+ background-color: #fff;
+}
+
+.content {
+ display: none;
+ overflow: hidden;
+}
+
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+
+.dot:hover{
+  background-color: #717171 ;
+}
+
+
+
+.black-owned-business-text{
+    color: #ffffff;
+}
+.black-owned-business-button{
+    background-image: linear-gradient(to top left,#000000,#434343)!important;
+    color: #fff!important;
+    display: inline-block;
+    font-family: inherit;
+    font-weight: 700;
+    border: 0;
+    border-radius: 8px;
+    white-space: nowrap;
+    padding: .5rem .75rem .25rem;
+    line-height: 1.4;
+    text-align: center;
+    transition: .07s;
+    position: relative;
+    text-decoration: none;
+    margin:  6vh 0 1vh;
+}

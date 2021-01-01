@@ -1,0 +1,158 @@
+<% siteposts.forEach(function(post){ %>
+  <% var postcopy = post %>
+  <div class="col-lg-3 col-md-4 col-sm-6 <%=post.category%> <%=post.cause %>">
+  <div class="product__item collapsible" onclick="showcontent()" id="<%= post.brandName%>">
+  <div class="product__item__pic set-bg" data-setbg= "<%= post.brandImageURL[0] %>" style="background-image: url(&quot;<%= post.brandImageURL[0]%>&quot;);" onclick="showcontent()" >
+  <ul class="product__hover">
+  <li><a href= "<%= post.brandImageURL[0] %>" class="image-popup"><span class="arrow_expand"></span></a></li>
+  <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+  </ul>
+  </div>
+  <div class="product__item__text">
+  <h6><%= post.brandName%></h6>
+  </div>
+  </div>
+<div class="content <%= post.brandName%>">
+   <div style="text-align:center">
+     <% for (m=0; m<post.brandImageURL.length; m++){ %>
+      <span class="dot" onclick="changeslide(<%= m%>)"></span>
+      <% } %>
+   </div>
+   <% if (post.cause == "Black Owned Business") { %>
+   <div class="black-owned-business-button">
+      <a href="google.com" class="button">
+         <h6 class="black-owned-business-text">Black Owned Business</h6>
+      </a>
+   </div>
+   <script>
+     var coll = document.getElementsById("<%= post.brandName%>");
+     alert(coll)
+          var i;
+
+          for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+              var colid = this.id
+              alert(colid)
+              var cont = document.getElementsByClassName(colid)
+              if (cont.style.display === "block") {
+                cont.style.display = "none";
+              } else {
+                cont.style.display = "block";
+              }
+            });
+          }
+     // var coll = document.getElementsByClassName("content");
+     //  function showcontent(){
+     //    if (content.style.display === "block") {
+     //      coll.style.display = "none";
+     //    } else {
+     //      coll.style.display = "block";
+     //    }
+     //  }
+   </script>
+   <script>
+      function changeslide(n) {
+        var slideIndex = n;
+        var image = document.getElementsByClassName("<%= postcopy.brandName%>")
+        var dots = document.getElementsByClassName("dot");
+        image[0].data-setbg = image[0].data-setbg.replace("<%= postcopy.brandImageURL[0] %>", "<%= postcopy.brandImageURL[1] %>")
+        image[0].style = image[0].style.replace("background-image: url(&quot;<%= postcopy.brandImageURL[0]%>&quot;);" onclick="showcontent()", "background-image: url(&quot;<%= postcopy.brandImageURL[1]%>&quot;);" onclick="showcontent()")
+        for (h = 0; h < dots.length; h++) {
+            dots[h].className = dots[h].className.replace(" active", "");
+        }
+        dots[slideIndex-1].className += " active";
+      }
+   </script>
+   <% } %>
+</div>
+  </div>
+<% }) %>
+
+
+
+
+
+
+
+
+
+<% siteposts.forEach(function(post){ %>
+  <% var postcopy = post %>
+  <div class="col-lg-3 col-md-4 col-sm-6 <%=post.category%> <%=post.cause %>">
+  <div class="product__item collapsible <%= post.brandName%>" onclick="showcontent()" id="<%= post.brandName%>">
+  <div class="product__item__pic set-bg <%= post.brandName%>" data-setbg= "<%= post.brandImageURL[0] %>" style="background-image: url(&quot;<%= post.brandImageURL[0]%>&quot;);" onclick="showcontent()" >
+  <ul class="product__hover">
+  <li><a href= "<%= post.brandImageURL[0] %>" class="image-popup"><span class="arrow_expand"></span></a></li>
+  <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+  </ul>
+  </div>
+  <div class="product__item__text">
+  <h6><%= post.brandName%></h6>
+  </div>
+  </div>
+<div class="content <%= post.brandName%>">
+   <div style="text-align:center">
+     <% for (m=0; m<post.brandImageURL.length; m++){ %>
+      <span class="dot" onclick="changeslide(<%= m%>)"></span>
+      <% } %>
+   </div>
+   <% if (post.cause == "Black Owned Business") { %>
+   <div class="black-owned-business-button">
+      <a href="google.com" class="button">
+         <h6 class="black-owned-business-text">Black Owned Business</h6>
+      </a>
+   </div>
+   <script>
+     var coll = document.getElementsByClassName("product__item collapsible <%= post.brandName%>");
+     var cont = document.getElementsByClassName("content");
+          var i;
+
+          for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+              // var colid = this.id
+              // for (q = 0; q<cont.length; q++){
+              //   if cont[q].class == "content"
+              // }
+              if (cont[i].style.display === "block") {
+                cont[i].style.display = "none";
+              } else {
+                cont[i].style.display = "block";
+              }
+            });
+          }
+     // var coll = document.getElementsByClassName("content");
+     //  function showcontent(){
+     //    if (content.style.display === "block") {
+     //      coll.style.display = "none";
+     //    } else {
+     //      coll.style.display = "block";
+     //    }
+     //  }
+   </script>
+   <script>
+      function changeslide(n) {
+        var slideIndex = n;
+        var image = document.getElementsByClassName("<%= postcopy.brandName%>")
+        var dots = document.getElementsByClassName("dot");
+        image[0].data-setbg = image[0].data-setbg.replace("<%= postcopy.brandImageURL[0] %>", "<%= postcopy.brandImageURL[1] %>")
+        image[0].style = image[0].style.replace("background-image: url(&quot;<%= postcopy.brandImageURL[0]%>&quot;);" onclick="showcontent()", "background-image: url(&quot;<%= postcopy.brandImageURL[1]%>&quot;);" onclick="showcontent()")
+        for (h = 0; h < dots.length; h++) {
+            dots[h].className = dots[h].className.replace(" active", "");
+        }
+        dots[slideIndex-1].className += " active";
+      }
+   </script>
+   <% } %>
+</div>
+  </div>
+<% }) %>
+
+
+// var image = document.getElementsByClassName("<%= postcopy.brandName%>")
+// var dots = document.getElementsByClassName("dot");
+// image[0].data-setbg = image[0].data-setbg.replace("<%= postcopy.brandImageURL[0] %>", "<%= postcopy.brandImageURL[1] %>")
+// image[0].style = image[0].style.replace("background-image: url(&quot;<%= postcopy.brandImageURL[0]%>&quot;);" onclick="showcontent()", "background-image: url(&quot;<%= postcopy.brandImageURL[1]%>&quot;);" onclick="showcontent()")
+// for (h = 0; h < dots.length; h++) {
+//     dots[h].className = dots[h].className.replace(" active", "");
+// }
+// dots[slideIndex-1].className += " active";
