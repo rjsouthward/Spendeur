@@ -12,7 +12,7 @@
   },
   "author": "Ryan Southward",
   "license": "ISC",
-  "engines":{
+  "engines": {
     "node": "12.18.3"
   },
   "bugs": {
