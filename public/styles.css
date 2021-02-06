@@ -1233,6 +1233,19 @@ h5 {
 h6 {
 	font-size: 16px;
 }
+
+.prod-btn {
+  padding: 10px 16px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
 @keyframes animatedGradient {
   from {
     background-size: 100%;
@@ -1509,9 +1522,13 @@ ol {
 -----------------------*/
 
 .header {
+	position: fixed;
+	top: 0;
+	width: 100%;
 	background: #ffffff;
-	-webkit-box-shadow: 0px 5px 10px rgba(91, 91, 91, 0.1);
-	box-shadow: 0px 5px 10px rgba(91, 91, 91, 0.1);
+	-webkit-box-shadow: 0px 2.5px 5px rgba(91, 91, 91, 0.1);
+	box-shadow: 0px 2.5px 5px rgba(91, 91, 91, 0.1);
+	z-index: 20;
 }
 
 .header__logo {
@@ -1539,7 +1556,7 @@ ol {
 	transform: scale(1);
 }
 
-.header__menu ul li:hover a:after {
+.header__menu ul li:hover .header_underline a:after {
 	-webkit-transform: scale(1);
 	-ms-transform: scale(1);
 	transform: scale(1);
@@ -1556,31 +1573,35 @@ ol {
 }
 
 .header__menu ul li .dropdown {
-	position: absolute;
+	position: fixed;
 	left: 0;
-	top: 56px;
-	width: 150px;
-	background: #111111;
+	padding-bottom: 50px;
+	margin-top: 30px;
+	/* margin-top: 83px; */
+	height: 400px;
+	/* top: 53px; */
+	top: 0;
+	width: 100%;
+	background: #fdfdfd;
 	text-align: left;
-	padding: 2px 0;
 	z-index: 9;
 	opacity: 0;
 	visibility: hidden;
-	-webkit-transition: all, 0.3s;
+	/* -webkit-transition: all, 0.3s;
 	-o-transition: all, 0.3s;
-	transition: all, 0.3s;
+	transition: all, 0.3s; */
 }
 
 .header__menu ul li .dropdown li {
 	display: block;
-	margin-right: 0;
+	margin-right: 60px;
 }
 
 .header__menu ul li .dropdown li a {
 	font-size: 14px;
 	color: #ffffff;
 	font-weight: 400;
-	padding: 8px 20px;
+	padding: 8px 10px;
 	text-transform: capitalize;
 }
 
@@ -1616,7 +1637,7 @@ ol {
 
 .header__right {
 	text-align: right;
-	padding: 30px 0 27px;
+	padding: 30px 0 10px;
 }
 
 .header__right__auth {
@@ -1691,6 +1712,48 @@ ol {
 
 .canvas__open {
 	display: none;
+}
+.nav-title{
+	display: block;
+	font-size: 20px;
+	font-weight: 900;
+	margin: 24px 0 12px;
+}
+div a h6{
+	color: 	#4f5b66;
+	text-transform: none;
+	display: block;
+	font-size: 18px;
+	font-weight: 500;
+	margin: 4px 0 4px;
+}
+.nav-col-parent a:hover h6{
+	color: #1687a7;
+	margin-right: 20px;
+}
+.nav-dropdown-item{
+	display: block;
+	font-size: 21px;
+}
+.nav-col-parent .nav-view-more{
+	color: 	#1687a7;
+	text-transform: none;
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 700;
+	margin: 1vh 0 1vh;
+}
+.nav-col-parent a{
+	display: inline-block;
+}
+.nav-col-parent span{
+	font-size: 18px;
+	display: inline-block;
+	color:#1687a7;
+	margin-top: 6px;
+}
+.nav-col-parent a span:hover{
+	margin-left: 20px;
 }
 
 /*---------------------
@@ -4391,7 +4454,7 @@ ol {
 
 @media only screen and (min-width: 1200px) and (max-width: 1599px) {
 	.header__menu ul li {
-		margin-right: 20px;
+		margin-right: 60px;
 	}
 	.header {
 		padding: 0 30px;
@@ -4408,7 +4471,7 @@ ol {
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
 	.header__menu ul li {
-		margin-right: 20px;
+		margin-right: 40px;
 	}
 	.header__right__auth {
 		margin-right: 5px;

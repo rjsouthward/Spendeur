@@ -89,33 +89,43 @@ const brandSchema = new mongoose.Schema({
     required: [true, "Error: brandImageURL not included."]
   },
   brandDesc:{
-    type: String,
-    required: [true, "Error: brandDesc not included."]
+    type: String
   },
   brandTags:{
     type: Array,
     required: [true, "Error: brandTags not included."]
   },
   brandLinkRedirect: {
-    type: String,
-    required: [true, "Error: brandLinkRedirect not included."]
+    type: String
   },
   brandLinkInternal:{
     type: String
   },
-  category: String,
+  category: Array,
   cause: String,
   brandProductTypes: Array,
   products: [productSchema]
 })
 
-
-
 const Brand = mongoose.model("brand", brandSchema);
+
+// DB of products to include in each category (ie Featured, Small Biz, etc. Only 8 products.)
+
+
+const categorySchema = new mongoose.Schema({
+  categoryName: String,
+  categoryProducts: [brandSchema]
+})
+
+const Category = mongoose.model("category", categorySchema);
+
+
 let port = process.env.PORT
 if (port == null||port ==""){
   port = 3000;
 }
+
+
 app.listen(port, function(){
   console.log("Listening on a Port")
 });

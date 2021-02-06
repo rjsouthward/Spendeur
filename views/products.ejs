@@ -2,18 +2,18 @@
 <!-- Header Section End -->
 <!-- Categories Section Begin -->
 <section class="categories">
-<div class="container-fluid" style="margin: 0 0 2vh;">
+<div class="container-fluid" style="margin: 86px 0 2vh;">
 <div class="row">
-  <div class="col-5 p-0">
+  <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 p-0">
   <div class="categories__item categories__large__item set-bg" data-setbg="images/hp-final.png" style="background-image: url(&quot;images/hp-final.png&quot;);background-position: left;">
   </div>
   </div>
-  <div class="col-7 p-0" style="padding-right: 3vw;">
+  <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 p-0" style="padding-right: 3vw;">
   <div class="categories__text hp-banner" style="max-width: 95%;">
   <!-- <h1 style="color: #27D8EE;">Spendeur</h1> -->
   <!-- background-color: rgba(189,39,51,.96); -->
   <h1 style="color: #222222;">
-    Find businesses you feel passionate about.
+    Find businesses you can stand behind.
   </h1>
   <ul style="list-style-type: none;">
   <li class="hp-list" style="margin-bottom: 6vh; margin-top: 10vh">
@@ -99,9 +99,10 @@
 </div>
 </div>
 </div> -->
+
 <div class="container-fluid">
 <div class="row">
-<div class="col-lg-8 col-md-8 col-sm-8 p-0">
+<div class="col-lg-6 col-md-6 col-sm-6 p-0 moveable">
 <div class="categories__item set-bg" data-setbg="images/women-phone.jpg" style="background-image: url(&quot;images/women-phone.jpg&quot;);background-position: right;">
 <div class="categories__text" style="position: absolute; left: 6vw;">
 <button class="home-site-btn">
@@ -111,7 +112,7 @@
 </div>
 </div>
 <!-- Other div -->
-<div class="col-lg-4 col-md-4 col-sm-4 p-0">
+<div class="col-lg-6 col-md-6 col-sm-6 p-0 moveable">
 <div class="categories__item set-bg" data-setbg="images/side-img-1-hp.png" style="background-image: url(&quot;images/side-img-1-hp.png&quot;);background-position: right;">
 <div class="categories__text" style="position: relative;">
   <button class="home-site-btn">
@@ -123,6 +124,27 @@
 <!-- End of other div  -->
 </div>
 </div>
+<script>
+  var cols = document.getElementsByClassName("moveable")
+   var colLeft = cols[0]
+   var colRight = cols[1]
+   colLeft.addEventListener("mouseenter", function(){
+       colLeft.className = "col-8 moveable"
+       colRight.className = "col-4 moveable"
+   })
+   colRight.addEventListener("mouseenter", function(){
+       colLeft.className = "col-4 moveable"
+       colRight.className = "col-8 moveable"
+   })
+   colLeft.addEventListener("mouseleave", function(){
+       colLeft.className = "col-6 moveable"
+       colRight.className = "col-6 moveable"
+   })
+   colRight.addEventListener("mouseleave", function(){
+       colLeft.className = "col-6 moveable"
+       colRight.className = "col-6 moveable"
+   })
+</script>
 <!-- <div class="col-lg-6 col-md-6 col-sm-6 p-0">
 <div class="categories__item set-bg" data-setbg="images/wearables.jpg" style="background-image: url(&quot;images/wearables.jpg&quot;);background-position: left;" transform="rotate(90deg)">
 <div class="categories__text">
@@ -184,7 +206,33 @@
         <span class="dot <%= post.brandName %>"  data-num="<%= m%>"></span>
         <% } %>
      </div>
-     <div class="brand-desc">
+    <button class="prod-btn <%=post.brandName %>" style="margin-bottom: 1.5;">See Description</button>
+    <script>
+      var btns = document.getElementsByClassName("prod-btn <%=post.brandName %>")
+      for (var it = 0; it < btns.length; it++){
+        btns[it].addEventListener("click", function(){
+          let fullBtnClass = this.className
+          let btnClassName = fullBtnClass.slice(9)
+          let desc = document.getElementsByClassName("brand-desc "+btnClassName)[0]
+          if (desc.style.display === "block") {
+            desc.style.display = "none";
+          } else {
+            desc.style.display = "block";
+          }
+          if (this.innerHTML == "See Description"){
+            this.innerHTML = "Hide Description"
+            this.style.backgroundColor = "black";
+            this.style.color = "white";
+          }
+          else if (this.innerHTML == "Hide Description") {
+            this.innerHTML = "See Description"
+            this.style.backgroundColor = "white";
+            this.style.color = "black";
+          }
+        })
+      }
+    </script>
+     <div class="brand-desc <%= post.brandName %>" style="display: none; margin-top: 1.5vh;">
        <p> <%- post.brandDesc%> </p>
      </div>
      <% if (post.cause == "Black Owned Business") { %>
@@ -236,14 +284,21 @@
                      d.style.height = "15px"
                    }
                   // Reset expand Link
-                  let respop = document.getElementsByClassName("popup "+spliced);
+                  let respop = document.getElementsByClassName("popup "+thisid);
                   respop[0].href = myimages[0]
-
+                  //Reset button
+                  let btnToChange = document.getElementsByClassName("prod-btn "+thisid)
+                  btnToChange[0].innerHTML = "See Description";
+                  btnToChange[0].style.backgroundColor = "white";
+                  btnToChange[0].style.color = "black";
                  } else {
                    p.style.display = "block";
                  }
                }
              }
+             let desc = document.getElementsByClassName("brand-desc "+this.id)[0]
+             desc.style.display = "none";
+
 
            });
          }
@@ -275,7 +330,7 @@
            this.style.height = "20px"
 
            // Changing the expand popup
-           let expop = document.getElementsByClassName("popup "+thisid);
+           let expop = document.getElementsByClassName("popup "+spliced);
            expop[0].href = images[number]
          });
        }
