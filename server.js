@@ -4,7 +4,6 @@ const ejs = require("ejs");
 const app = express();
 const _ = require("lodash")
 const mongoose = require('mongoose');
-
 let dburl = process.env.dburl
 // console.log("success")
 if (dburl == null||dburl ==""){
@@ -107,15 +106,14 @@ const brandSchema = new mongoose.Schema({
   products: [productSchema]
 })
 
+const categorySchema = new mongoose.Schema({
+  categoryName: String,
+  categoryProducts: Array
+})
 const Brand = mongoose.model("brand", brandSchema);
 
 // DB of products to include in each category (ie Featured, Small Biz, etc. Only 8 products.)
 
-
-const categorySchema = new mongoose.Schema({
-  categoryName: String,
-  categoryProducts: [brandSchema]
-})
 
 const Category = mongoose.model("category", categorySchema);
 
@@ -133,12 +131,13 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname+"/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/", function(req, res){
-  Brand.find({}, function(err, allPosts){
-    if (!err){
-    res.render("home", {siteposts: allPosts});
-  }
-})
+app.get("/", async function(req, res){
+  let featuredPosts = await Category.find({categoryName: "Featured"});
+  let brandsToBeSent = await Brand.find({_id: featuredPosts[0].categoryProducts});
+
+  let postsToBeSent = await Brand.find({});
+
+  res.render("home", {featuredposts: brandsToBeSent, siteposts: postsToBeSent});
 });
 
 Brand.find({}, "brandName", function(err, brands){

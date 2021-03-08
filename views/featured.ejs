@@ -1,0 +1,62 @@
+<section class="featured spad">
+<div class="container">
+<div class="row">
+<div class="col-lg-4 col-md-4">
+<div class="section-title">
+<h4>Featured</h4>
+</div>
+</div>
+<div class="col-lg-8 col-md-8">
+</div>
+</div>
+<div class="row featured__property__gallery" id="MixItUp289236">
+<!-- Start -->
+
+<% featured.forEach(function(post){ %>
+  <% var imageconcat = "" %>
+  <% for (image of post.brandImageURL){ %>
+    <% imageconcat += image %>
+    <% imageconcat += " " %>
+  <% } %>
+
+  <div class="col-lg-3 col-md-4 col-sm-6">
+  <div class="product__item collapsible" >
+  <div class="product__item__pic set-bg" data-setbg= "<%= post.brandImageURL[0] %>" style="background-image: url(&quot;<%= post.brandImageURL[0]%>&quot;);" data-images="<%= imageconcat%>" >
+  <ul class="product__hover">
+  <!-- Expand Icon Below -->
+  <li><a class="popup" target="_blank" rel="noopener noreferrer" href= "<%= post.brandImageURL[0] %>" class="image-popup"><span class="arrow_expand"></span></a></li>
+  <li><a target="_blank" rel="noopener noreferrer" href="<%=post.brandLinkRedirect %>"><span class="icon_bag_alt"></span></a></li>
+  </ul>
+  </div>
+  <div class="product__item__text">
+  <h6><%= post.brandName%></h6>
+  </div>
+  <div class="content" >
+    <div style="text-align:center">
+       <% for (let m=0; m<post.brandImageURL.length; m++){ %>
+        <span class="dot"  data-num="<%= m%>"></span>
+        <% } %>
+    </div>
+    <button class="prod-btn" style="margin-bottom: 1.5; display: block;">See Description</button>
+     <div class="brand-desc" style="display: none; margin-top: 1.5vh;">
+       <p> <%- post.brandDesc%> </p>
+     </div>
+     <% if (post.cause == "Black Owned Business") { %>
+           <div><span class="label stockout">Black Owned Business</span></div>
+     <% } %>
+     <% post.brandProductTypes.forEach(function(type){ %>
+       <div class="product-label-inline"><span class="label stockblue"><%= type%></span></div>
+     <% })%>
+  </div>
+  </div>
+<!-- Insert here -->
+  </div>
+
+<% }) %>
+
+<!-- End -->
+
+</div>
+</div>
+
+</section>

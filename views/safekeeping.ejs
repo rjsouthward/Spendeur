@@ -208,3 +208,174 @@ Testing...
   </div>
   </div>
 <% }) %>
+
+<!-- Break -->
+
+<script>
+  var coll = document.getElementsByClassName("product__item collapsible");
+       var i;
+
+       for (i = 0; i < coll.length; i++) {
+         coll[i].addEventListener("mouseenter", function() {
+               if (this.lastElementChild.display === "block") {
+                 this.lastElementChild.style.display = "none";
+               } else {
+                 this.lastElementChild.style.display = "block";
+                 let dotImageSelectors = this.lastElementChild.firstElementChild.children
+                 dotImageSelectors[0].style.backgroundColor = "#717171"
+                 dotImageSelectors[0].style.width = "20px"
+                 dotImageSelectors[0].style.height = "20px"
+               }
+
+         });
+         coll[i].addEventListener("mouseleave", function() {
+           this.lastElementChild.style.display = "none";
+           //Div with product__item__pic set-bg
+           let collapsibleDiv = this.parentElement
+           let containerImageDiv = collapsibleDiv.firstElementChild
+           //Reset the background image to the first image.
+           let imageDataSet = containerImageDiv[0].dataset.images.split(" ")
+           containerImageDiv[0].style.backgroundImage = "url('"+imageDataSet[0] +"')"
+           //Reset Dots to normal size
+           let dotImageSelectors = this.lastElementChild.firstElementChild.children
+           for (dot of dotImageSelectors){
+             dot.style.backgroundColor = "#bbb"
+             dot.style.width = "15px"
+             dot.style.height = "15px"
+           }
+           //Reset the expand image button
+           let expandIconLi = containerImageDiv.firstElementChild.firstElementChild
+           expandIconLi[0].href = imageDataSet[0]
+           //Reset button style to white.
+           this.lastElementChild.children[1].innerHTML = "See Description";
+           this.lastElementChild.children[1].style.backgroundColor = "white";
+           this.lastElementChild.children[1].style.color = "black";
+           //Hide description content for button
+           this.lastElementChild.children[3].style.display = "none";
+
+           let thisid = this.id
+           for (p of cont){
+             if (p.className == "content "+thisid){
+               if (p.style.display === "block") {
+                 p.style.display = "none";
+
+                 let reset = document.getElementsByClassName("product__item__pic set-bg "+thisid);
+                 let myimages = reset[0].dataset.images.split(" ")
+                 reset[0].style.backgroundImage = "url('"+myimages[0] +"')"
+                 let alldots = document.getElementsByClassName("dot");
+                 for (d of alldots){
+                   d.style.backgroundColor = "#bbb"
+                   d.style.width = "15px"
+                   d.style.height = "15px"
+                 }
+
+                // Reset expand Link
+                let respop = document.getElementsByClassName("popup "+thisid);
+                respop[0].href = myimages[0]
+                //Reset button
+                let btnToChange = document.getElementsByClassName("prod-btn "+thisid)
+                btnToChange[0].innerHTML = "See Description";
+                btnToChange[0].style.backgroundColor = "white";
+                btnToChange[0].style.color = "black";
+               } else {
+                 p.style.display = "block";
+               }
+             }
+           }
+           let desc = document.getElementsByClassName("brand-desc "+this.id)[0]
+           desc.style.display = "none";
+
+
+         });
+       }
+</script>
+<!-- Next -->
+<script>
+  // let dots = document.getElementsByClassName("dot")
+       for (let p = 0; p < document.getElementsByClassName("dot").length; p++) {
+         document.getElementsByClassName("dot")[p].addEventListener("click", function() {
+           for (dot of document.getElementsByClassName("dot")){
+              dot.style.backgroundColor = "#bbb";
+              dot.style.width = "15px";
+              dot.style.height = "15px";
+           }
+           let number = this.dataset.num;
+           let containerImageDiv = this.parentElement.parentElement.parentElement.firstElementChild;
+           let images = containerImageDiv.dataset.images.split(" ");
+           containerImageDiv.style.backgroundImage = "url('"+images[number] +"')";
+           this.style.backgroundColor = "#717171";
+           this.style.width = "20px";
+           this.style.height = "20px";
+           let expandIcon = containerImageDiv.firstElementChild.firstElementChild.firstElementChild;
+           expandIcon.href = images[number];
+         });
+       }
+
+
+</script>
+<script>
+  // var btns = document.getElementsByClassName("prod-btn")
+  for (let it = 0; it < document.getElementsByClassName("prod-btn").length; it++){
+    document.getElementsByClassName("prod-btn")[it].addEventListener("click", function(){
+      let brandDescDiv = this.parentElement.children[3]
+      if (brandDescDiv.style.display === "block") {
+        brandDescDiv.style.display = "none";
+      } else {
+        brandDescDiv.style.display = "block";
+      }
+      if (this.innerHTML == "See Description"){
+        this.innerHTML = "Hide Description"
+        this.style.backgroundColor = "black";
+        this.style.color = "white";
+      }
+      else if (this.innerHTML == "Hide Description") {
+        this.innerHTML = "See Description"
+        this.style.backgroundColor = "white";
+        this.style.color = "black";
+      }
+    })
+  }
+</script>
+<script>
+  // var coll = document.getElementsByClassName("product__item collapsible");
+
+       for (let i = 0; i < document.getElementsByClassName("product__item collapsible").length; i++) {
+         document.getElementsByClassName("product__item collapsible")[i].addEventListener("mouseenter", function() {
+            //Unhide the content
+             this.lastElementChild.style.display = "block";
+             //Highlight the first dot.
+             let dotImageSelectors = this.lastElementChild.firstElementChild.children
+             dotImageSelectors[0].style.backgroundColor = "#717171"
+             dotImageSelectors[0].style.width = "20px"
+             dotImageSelectors[0].style.height = "20px"
+         });
+         document.getElementsByClassName("product__item collapsible")[i].addEventListener("mouseleave", function() {
+           this.lastElementChild.style.display = "none";
+           //Div with product__item__pic set-bg
+           // console.log(this.parentElement)
+           let collapsibleDiv = this.parentElement
+           let containerImageDiv = this.firstElementChild
+           //Reset the background image to the first image.
+           let imageDataSet = containerImageDiv.dataset.images.split(" ")
+           containerImageDiv.style.backgroundImage = "url('"+imageDataSet[0] +"')"
+           //Reset Dots to normal size
+           let dotImageSelectors = this.lastElementChild.firstElementChild.children
+           for (dot of dotImageSelectors){
+             dot.style.backgroundColor = "#bbb"
+             dot.style.width = "15px"
+             dot.style.height = "15px"
+           }
+           //Reset the expand image button
+           let expandIconLi = containerImageDiv.firstElementChild.firstElementChild.firstElementChild
+           expandIconLi.href = imageDataSet[0]
+           //Reset button style to white.
+           this.lastElementChild.children[1].innerHTML = "See Description";
+           this.lastElementChild.children[1].style.backgroundColor = "white";
+           this.lastElementChild.children[1].style.color = "black";
+           //Hide description content for button
+           this.lastElementChild.children[3].style.display = "none";
+
+         });
+       }
+</script>
+<!-- Next -->
